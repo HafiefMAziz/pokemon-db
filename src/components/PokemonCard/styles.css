@@ -1,0 +1,64 @@
+/* styles.css */
+
+:root {
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-card {
+  display: flex;
+  align-items: left;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px 70px;
+}
+
+.pokemon-image {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+  align-self: center;
+}
+
+.pokemon-details {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.pokemon-details h2 {
+  margin-top: 0;
+}
+
+.pokemon-details p {
+  margin: 5px 0;
+}
+
+.pokemon-type-button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  text-transform: capitalize;
+  border: 1px solid var(--border-color);
+}
+
+
+.stat {
+  margin-bottom: 7px;
+}
+
+.stat-name {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.stat-bar {
+  display: flex;
+  color: #fff;
+  height: 20px;
+  border-radius: 8px;
+  text-shadow: 0 1px 1px rgb(0, 0, 0);
+  border: 1px solid var(--border-color);
+}
