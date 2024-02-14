@@ -1,0 +1,28 @@
+.vertical-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pokemon-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.pokemon-details {
+  flex-grow: 1;
+}
+
+.pokemon-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pokemon-types {
+  margin-top: 5px;
+}
