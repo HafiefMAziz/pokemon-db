@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPokemon } from "../../redux/pokemonSlice";
-import axios from "axios";
-import "./styles.css";
+import "./SearchBar.css";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");

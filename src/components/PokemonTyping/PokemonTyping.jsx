@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.css";
+import "./PokemonTyping.css";
 
 function PokemonTyping({ typingName }) {
   const getTypeColor = (type) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import PokemonTyping from "../PokemonTyping/PokemonTyping";
-import "./styles.css";
+import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemonData }) => {
   function capitalizeEachWord(str) {

@@ -1,15 +1,18 @@
 .vertical-card {
   display: flex;
+  width: 250px;
   align-items: center;
   margin-bottom: 20px;
+  margin-right: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .pokemon-image {
-  width: 80px;
-  height: 80px;
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: scale-down;
   margin-right: 20px;
 }
 
@@ -21,8 +24,5 @@
   margin: 0;
   font-size: 18px;
   font-weight: bold;
-}
-
-.pokemon-types {
-  margin-top: 5px;
+  text-transform: capitalize;
 }

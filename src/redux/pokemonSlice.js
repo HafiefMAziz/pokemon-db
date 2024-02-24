@@ -5,36 +5,34 @@ const initialState = {
   loading: false,
   pokemon: null,
   pokemons: null,
+  limitPage: 50,
   error: null,
 };
 
-export const fetchPokemons = createAsyncThunk("pokemon/fetchPokemons", async (offset, { rejectWithValue }) => {
+export const fetchPokemons = createAsyncThunk("pokemon/fetchPokemons", async ({offset, limitPage}) => {
   console.log(`fetchPokemons`);
-  console.log(offset);
+  console.log(`offset ${offset}, limit ${JSON.stringify(limitPage)}`);
   try {
     const result = await axios({
       method: "GET",
-      url: `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=50`,
+      url: `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limitPage}`,
+    }).then(async (response) => {
+      response.data.results = await response.data.results.map(async (pokemon) => {
+        const pokemonData = await axios({
+          method: "GET",
+          url: pokemon.url,
+        });
+        return pokemonData.data;
+      });
+      response.data.results = await Promise.all(response.data.results).then((data) => {
+        return data;
+      });
+      return response.data;
     });
-    // const pokemons = await result.data.results.map(async (pokemon) => {
-    //   try {
-    //     const result = await axios({
-    //       method: "GET",
-    //       url: pokemon.url,
-    //     })
-    //     // console.log(pokemon);
-    //     // console.log(result.data);
-    //     return result.data;
-    //     // pokemons.push(result.data);
-    //   } catch (error) {
-    //     return rejectWithValue(error);
-    //   }
-    // });
-    // console.log(result.data);
-    // console.log(await pokemons[1]);
-    return result.data;
+    return result;
   } catch (error) {
-    return rejectWithValue(error);
+    console.log(error);
+    return error;
   }
 });
 
@@ -67,7 +65,7 @@ export const pokemonSlice = createSlice({
     builder.addCase(fetchPokemon.rejected, (state, action) => {
       state.loading = false;
       state.pokemon = null;
-      state.error = action.payload.message + ": There is no pokemon with such a name";
+      state.error = action.payload + ": There is no pokemon with such a name";
     });
 
     builder.addCase(fetchPokemons.pending, (state) => {
@@ -81,7 +79,7 @@ export const pokemonSlice = createSlice({
     builder.addCase(fetchPokemons.rejected, (state, action) => {
       state.loading = false;
       state.pokemons = null;
-      state.error = action.payload.message;
+      state.error = action.payload;
     });
   },
 });
