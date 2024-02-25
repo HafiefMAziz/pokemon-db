@@ -3,13 +3,6 @@ import PokemonTyping from "../PokemonTyping/PokemonTyping";
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemonData }) => {
-  function capitalizeEachWord(str) {
-    return str
-      .toLowerCase()
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  }
   const statCategories = [
     { color: "red", max: 40 },
     { color: "orange", max: 60 },
@@ -21,7 +14,7 @@ const PokemonCard = ({ pokemonData }) => {
     <div className="pokemon-card">
       <img src={pokemonData.sprites.front_default} alt={pokemonData.name} className="pokemon-image" />
       <div className="pokemon-details">
-        <h2>{capitalizeEachWord(pokemonData.name)}</h2>
+        <h2>{pokemonData.name.split('-').join(' ')}</h2>
         <p>
           <strong>Type:</strong>{" "}
           {pokemonData.types.map((type) => (
@@ -30,7 +23,7 @@ const PokemonCard = ({ pokemonData }) => {
         </p>
         <p>
           <strong>Abilities:</strong>{" "}
-          {pokemonData.abilities.map((ability) => capitalizeEachWord(ability.ability.name)).join(", ")}
+          {pokemonData.abilities.map((ability) => ability.ability.name.split('-').join(' ')).join(", ")}
         </p>
         <p>
           <strong>Height:</strong> {(pokemonData.height * 0.1).toFixed(1)} m
@@ -44,7 +37,7 @@ const PokemonCard = ({ pokemonData }) => {
             const category = statCategories.find((cat) => stat.base_stat <= cat.max);
             return (
               <div key={stat.stat.name} className="stat">
-                <div className="stat-name">{capitalizeEachWord(stat.stat.name)}</div>
+                <div className="stat-name">{stat.stat.name.split('-').join(' ')}</div>
                 <div
                   className="stat-bar"
                   style={{

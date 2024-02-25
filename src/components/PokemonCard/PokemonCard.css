@@ -21,6 +21,7 @@
 }
 
 .pokemon-details {
+  text-transform: capitalize;
   flex-grow: 1;
   margin-left: 10px;
 }

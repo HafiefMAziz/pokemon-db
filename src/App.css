@@ -10,5 +10,6 @@
 .pokemons-display {
     display:flex;
     flex-wrap: wrap;
+    align-items: center;
     background-color: aliceblue;
 }
