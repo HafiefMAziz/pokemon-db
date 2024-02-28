@@ -2,10 +2,10 @@
   display: flex;
   width: 250px;
   align-items: center;
-  margin-bottom: 20px;
-  margin-right: 10px;
   padding: 10px;
   border: 1px solid #ccc;
+  background-color: aliceblue;
+
   border-radius: 5px;
 }
 

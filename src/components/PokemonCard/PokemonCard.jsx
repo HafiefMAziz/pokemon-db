@@ -12,32 +12,34 @@ const PokemonCard = ({ pokemonData }) => {
   ];
   return (
     <div className="pokemon-card">
-      <img src={pokemonData.sprites.front_default} alt={pokemonData.name} className="pokemon-image" />
       <div className="pokemon-details">
-        <h2>{pokemonData.name.split('-').join(' ')}</h2>
-        <p>
-          <strong>Type:</strong>{" "}
-          {pokemonData.types.map((type) => (
-            <PokemonTyping typingName={type.type.name} />
-          ))}
-        </p>
-        <p>
-          <strong>Abilities:</strong>{" "}
-          {pokemonData.abilities.map((ability) => ability.ability.name.split('-').join(' ')).join(", ")}
-        </p>
-        <p>
-          <strong>Height:</strong> {(pokemonData.height * 0.1).toFixed(1)} m
-        </p>
-        <p>
-          <strong>Weight:</strong> {(pokemonData.weight * 0.1).toFixed(1)} kg
-        </p>
+        <div className="pokemon-detail-top">
+          <img src={pokemonData.sprites.other.showdown.front_default} alt={pokemonData.name} className="pokemon-image" />
+          <h2>{pokemonData.name.split("-").join(" ")}</h2>
+          <p>
+            <strong>Type:</strong>{" "}
+            {pokemonData.types.map((type) => (
+              <PokemonTyping typingName={type.type.name} />
+            ))}
+          </p>
+          <p>
+            <strong>Abilities:</strong>{" "}
+            {pokemonData.abilities.map((ability) => ability.ability.name.split("-").join(" ")).join(", ")}
+          </p>
+          <p>
+            <strong>Height:</strong> {(pokemonData.height * 0.1).toFixed(1)} m
+          </p>
+          <p>
+            <strong>Weight:</strong> {(pokemonData.weight * 0.1).toFixed(1)} kg
+          </p>
+        </div>
         <div className="stats">
           <strong>Base Stats:</strong>
           {pokemonData.stats.map((stat) => {
             const category = statCategories.find((cat) => stat.base_stat <= cat.max);
             return (
               <div key={stat.stat.name} className="stat">
-                <div className="stat-name">{stat.stat.name.split('-').join(' ')}</div>
+                <div className="stat-name">{stat.stat.name.split("-").join(" ")}</div>
                 <div
                   className="stat-bar"
                   style={{

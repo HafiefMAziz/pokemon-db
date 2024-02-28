@@ -25,7 +25,7 @@ const initialState = {
     steel: "#B8B8D0",
     fairy: "#EE99AC",
   },
-  limitPage: 50,
+  limitPage: 54,
   error: null,
 };
 

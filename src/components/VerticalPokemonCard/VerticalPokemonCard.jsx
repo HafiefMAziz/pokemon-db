@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PokemonTyping from "../PokemonTyping/PokemonTyping";
 import "./VerticalPokemonCard.css";
 
@@ -21,7 +22,9 @@ function VerticalPokemonCard({ pokemon }) {
         onClick={() => playCries(cries.latest)}
       />
       <div className="pokemon-details">
+        <Link to={`/pokemons/${name}`}>
         <h3 className="pokemon-name">{name.split("-").join(" ")}</h3>
+        </Link>
         <div className="pokemon-types">
           {types.map((type, index) => (
             <PokemonTyping key={index} typingName={type.type.name} />

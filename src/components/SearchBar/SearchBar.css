@@ -6,6 +6,8 @@ h1 {
   margin-bottom: 20px;
   align-items: center;
   background-color: red;
+  display: flex;
+  width: 100%;
 }
 
 input[type="text"] {
@@ -32,3 +34,41 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.search-input {
+  position: relative;
+  width: 300px;
+  margin-left: auto;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestions li {
+  text-transform: capitalize;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
