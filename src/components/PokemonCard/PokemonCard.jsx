@@ -1,5 +1,7 @@
 import React from "react";
 import PokemonTyping from "../PokemonTyping/PokemonTyping";
+import TypeChart from "../../components/TypeChart/TypeChart";
+
 import "./PokemonCard.css";
 
 const PokemonCard = ({ pokemonData }) => {
@@ -14,14 +16,22 @@ const PokemonCard = ({ pokemonData }) => {
     <div className="pokemon-card">
       <div className="pokemon-details">
         <div className="pokemon-detail-top">
-          <img src={pokemonData.sprites.other.showdown.front_default} alt={pokemonData.name} className="pokemon-image" />
+          <img
+            src={pokemonData.sprites.other.showdown.front_default}
+            alt={pokemonData.name}
+            className="pokemon-image"
+          />
           <h2>{pokemonData.name.split("-").join(" ")}</h2>
           <p>
             <strong>Type:</strong>{" "}
-            {pokemonData.types.map((type) => (
-              <PokemonTyping typingName={type.type.name} />
+            {pokemonData.types.map((type, index) => (
+              <PokemonTyping key={index} typingName={type.name} style={{ marginLeft: 5 }} />
             ))}
           </p>
+          <div>
+            <strong>Type defenses:</strong>
+            <TypeChart takesDamage={pokemonData.take_damages}/>
+          </div>
           <p>
             <strong>Abilities:</strong>{" "}
             {pokemonData.abilities.map((ability) => ability.ability.name.split("-").join(" ")).join(", ")}

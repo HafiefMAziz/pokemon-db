@@ -1,0 +1,19 @@
+.type-chart {
+  width: 100%;
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+  
+}
+th,
+td {
+    vertical-align: middle;
+    /* background-color:red; */
+  border: rgba(201, 201, 201, 0.349) 1px solid;
+  color: gold;
+}
+td{
+  padding:10px
+}
+

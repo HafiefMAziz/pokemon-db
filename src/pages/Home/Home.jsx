@@ -16,10 +16,10 @@ function Home() {
   const type = searchParams.get("type");
   const offset = limitPage * (page - 1);
   const totalPages = pokemons && Math.ceil(pokemons.count / limitPage);
-  
+
   const handlePage = (event, page) => {
     console.log(page);
-    const offset = limitPage * (page - 1);
+    const offset = page <= 1 ? 0 : limitPage * (page - 1);
     setSearchParams((prev) => {
       prev.set("page", page);
       return prev;

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "./PokemonTyping.css";
 
-function PokemonTyping({ typingName }) {
+function PokemonTyping({ typingName, short = false }) {
   const pokemonState = useSelector((state) => state.pokemon);
   const { types } = pokemonState;
   const getTypeColor = (type) => {
@@ -19,8 +19,11 @@ function PokemonTyping({ typingName }) {
           key={typingName}
           style={{
             backgroundColor: getTypeColor(typingName),
+            width: short ? 40 : 80,
+            marginRight: short ? 0 : 3,
+            marginBottom: short ? 0 : 3
           }}>
-          {typingName}
+          {short ? typingName.slice(0, 3) : typingName}
         </button>
       </Link>
     </>

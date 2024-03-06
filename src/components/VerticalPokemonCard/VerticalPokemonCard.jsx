@@ -5,9 +5,9 @@ import "./VerticalPokemonCard.css";
 
 function VerticalPokemonCard({ pokemon }) {
   const { name, sprites, types, cries } = pokemon;
-  const playCries = url => {
+  const playCries = (url) => {
     new Audio(url).play();
-  }
+  };
 
   return (
     <div className="vertical-card">
@@ -22,8 +22,8 @@ function VerticalPokemonCard({ pokemon }) {
         onClick={() => playCries(cries.latest)}
       />
       <div className="pokemon-details">
-        <Link to={`/pokemons/${name}`}>
-        <h3 className="pokemon-name">{name.split("-").join(" ")}</h3>
+        <Link to={`/pokemons/${name}`} style={{ textDecoration: "none" }}>
+          <h3 className="pokemon-name">{name.split("-").join(" ")}</h3>
         </Link>
         <div className="pokemon-types">
           {types.map((type, index) => (

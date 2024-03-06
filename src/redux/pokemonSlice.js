@@ -38,45 +38,31 @@ export const fetchPokemons = createAsyncThunk(
     try {
       let result = [];
       if (Object.keys(types).includes(type)) {
-        result = await axios({
-          method: "GET",
-          url: `https://pokeapi.co/api/v2/type/${type}`,
-        }).then(async (response) => {
+        result = await axios.get(`https://pokeapi.co/api/v2/type/${type}`).then(async (response) => {
           response.data.count = response.data.pokemon.length;
           response.data.pokemon = await response.data.pokemon.slice(offset, offset + limitPage).map(async (pokemon) => {
             const { url } = pokemon.pokemon;
-            const pokemonData = await axios({
-              method: "GET",
-              url,
-            });
-            return pokemonData.data;
-          });
-          response.data.pokemon = await Promise.all(response.data.pokemon).then((data) => {
-            return data;
+            pokemon = await axios.get(url).then((res) => res.data);
+            return pokemon;
           });
           response.data.pokemons = response.data.pokemon;
           return response.data;
         });
       } else {
-        result = await axios({
-          method: "GET",
-          url: `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limitPage}`,
-        }).then(async (response) => {
-          response.data.results = await response.data.results.map(async (pokemon) => {
-            const pokemonData = await axios({
-              method: "GET",
-              url: pokemon.url,
+        result = await axios
+          .get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limitPage}`)
+          .then(async (response) => {
+            response.data.results = await response.data.results.map(async (pokemon) => {
+              pokemon = axios.get(pokemon.url).then((res) => res.data);
+              return pokemon;
             });
-            return pokemonData.data;
+            response.data.pokemons = response.data.results;
+            return response.data;
           });
-          response.data.results = await Promise.all(response.data.results).then((data) => {
-            return data;
-          });
-          response.data.pokemons = response.data.results;
-          return response.data;
-        });
       }
-
+      result.pokemons = await Promise.all(result.pokemons).then((resultData) => {
+        return resultData;
+      });
       return { count: result.count, pokemons: result.pokemons };
     } catch (error) {
       console.log(error);
@@ -88,11 +74,31 @@ export const fetchPokemons = createAsyncThunk(
 export const fetchPokemon = createAsyncThunk("pokemon/fetchPokemon", async (searchTerm, { rejectWithValue }) => {
   console.log(`fetchPokemon`);
   try {
-    const result = await axios({
-      method: "GET",
-      url: `https://pokeapi.co/api/v2/pokemon/${searchTerm}`,
+    const result = axios.get(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`).then(async (response) => {
+      response.data.take_damages = [];
+      response.data.types = response.data.types.map((type) => {
+        type = axios.get(type.type.url).then((res) => {
+          res.data.damage_relations.double_damage_from.forEach((type) => {
+            const existingType = response.data.take_damages.find((item) => item.name === type.name);
+            existingType ? (existingType.damage *= 2) : response.data.take_damages.push({ name: type.name, damage: 2 });
+          });
+          res.data.damage_relations.half_damage_from.forEach((type) => {
+            const existingType = response.data.take_damages.find((item) => item.name === type.name);
+            existingType ? (existingType.damage *= 0.5) : response.data.take_damages.push({ name: type.name, damage: 0.5 });
+          });
+          res.data.damage_relations.no_damage_from.forEach((type) => {
+            const existingType = response.data.take_damages.find((item) => item.name === type.name);
+            existingType ? (existingType.damage = 0) : response.data.take_damages.push({ name: type.name, damage: 0 });
+          });
+          return res.data;
+        });
+        return type;
+      });
+      console.log(response.data.take_damages);
+      response.data.types = await Promise.all(response.data.types).then((data) => data);
+      return response.data;
     });
-    return result.data;
+    return result;
   } catch (error) {
     return rejectWithValue(error);
   }
