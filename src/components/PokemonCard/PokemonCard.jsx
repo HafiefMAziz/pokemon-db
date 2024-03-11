@@ -7,10 +7,11 @@ import "./PokemonCard.css";
 const PokemonCard = ({ pokemonData }) => {
   const statCategories = [
     { color: "red", max: 40 },
-    { color: "orange", max: 60 },
+    { color: "#ff7f0f", max: 60 },
     { color: "yellow", max: 80 },
     { color: "lightgreen", max: 100 },
-    { color: "green", max: 200 },
+    { color: "#a0e515", max: 200 },
+    { color: "#00c2b8", max: 250 },
   ];
   return (
     <div className="pokemon-card">
@@ -22,15 +23,15 @@ const PokemonCard = ({ pokemonData }) => {
             className="pokemon-image"
           />
           <h2>{pokemonData.name.split("-").join(" ")}</h2>
-          <p>
+            <div className="pokemon-types">
             <strong>Type:</strong>{" "}
-            {pokemonData.types.map((type, index) => (
-              <PokemonTyping key={index} typingName={type.name} style={{ marginLeft: 5 }} />
-            ))}
-          </p>
+              {pokemonData.types.map((type, index) => (
+                <PokemonTyping key={index} typingName={type.name} style={{ marginLeft: 5 }} />
+              ))}
+            </div>
           <div>
             <strong>Type defenses:</strong>
-            <TypeChart takesDamage={pokemonData.take_damages}/>
+            <TypeChart takesDamage={pokemonData.take_damages} />
           </div>
           <p>
             <strong>Abilities:</strong>{" "}
@@ -47,13 +48,14 @@ const PokemonCard = ({ pokemonData }) => {
           <strong>Base Stats:</strong>
           {pokemonData.stats.map((stat) => {
             const category = statCategories.find((cat) => stat.base_stat <= cat.max);
+            const barWidth = (stat.base_stat / 200) * 100;
             return (
               <div key={stat.stat.name} className="stat">
                 <div className="stat-name">{stat.stat.name.split("-").join(" ")}</div>
                 <div
                   className="stat-bar"
                   style={{
-                    width: `${(stat.base_stat / 200) * 100}%`,
+                    width: `${barWidth > 100 ? "100" : barWidth}%`,
                     backgroundColor: category.color,
                   }}>
                   {stat.base_stat}

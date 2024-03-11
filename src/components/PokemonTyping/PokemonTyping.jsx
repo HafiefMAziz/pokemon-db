@@ -20,8 +20,6 @@ function PokemonTyping({ typingName, short = false }) {
           style={{
             backgroundColor: getTypeColor(typingName),
             width: short ? 40 : 80,
-            marginRight: short ? 0 : 3,
-            marginBottom: short ? 0 : 3
           }}>
           {short ? typingName.slice(0, 3) : typingName}
         </button>

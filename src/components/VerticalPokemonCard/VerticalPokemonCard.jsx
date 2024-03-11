@@ -18,14 +18,14 @@ function VerticalPokemonCard({ pokemon }) {
             : "https://static.thenounproject.com/png/3674270-200.png"
         }
         alt={name}
-        className="pokemon-image"
+        className="pokemon-image-vertical"
         onClick={() => playCries(cries.latest)}
       />
-      <div className="pokemon-details">
+      <div className="pokemon-details-vertical">
         <Link to={`/pokemons/${name}`} style={{ textDecoration: "none" }}>
-          <h3 className="pokemon-name">{name.split("-").join(" ")}</h3>
+          <h3 className="pokemon-name-vertical" style={{ fontSize: name.length >= 12 ? "15px" : "18px" }}>{name.split("-").join(" ")}</h3>
         </Link>
-        <div className="pokemon-types">
+        <div className="pokemon-types-vertical">
           {types.map((type, index) => (
             <PokemonTyping key={index} typingName={type.type.name} />
           ))}

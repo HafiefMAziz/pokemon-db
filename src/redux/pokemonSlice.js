@@ -94,7 +94,7 @@ export const fetchPokemon = createAsyncThunk("pokemon/fetchPokemon", async (sear
         });
         return type;
       });
-      console.log(response.data.take_damages);
+      // console.log(response.data.take_damages);
       response.data.types = await Promise.all(response.data.types).then((data) => data);
       return response.data;
     });

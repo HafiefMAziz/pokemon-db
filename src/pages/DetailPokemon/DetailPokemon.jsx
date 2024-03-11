@@ -19,7 +19,8 @@ export default function DetailPokemon() {
       {error && <p>{error}</p>}
       {pokemon ? (
         <>
-          {console.log(pokemon)} <PokemonCard pokemonData={pokemon} />{" "}
+          {/* {console.log(pokemon)}  */}
+          <PokemonCard pokemonData={pokemon} />{" "}
         </>
       ) : (
         <Loading />

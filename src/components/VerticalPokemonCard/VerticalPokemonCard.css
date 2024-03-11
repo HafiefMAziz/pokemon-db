@@ -1,28 +1,35 @@
 .vertical-card {
   display: flex;
+  gap: 5px;
   width: 250px;
-  align-items: center;
+  height: 100px;
   padding: 10px;
   border: 1px solid #ccc;
   background-color: aliceblue;
-
   border-radius: 5px;
 }
-
-.pokemon-image {
-  max-width: 100px;
-  max-height: 100px;
+.pokemon-details-vertical{
+  align-self: center;
+  padding: 5px;
+}
+.pokemon-image-vertical {
+  width: 100px;
+  height: 100px;
+  flex-grow: 0.75;
   object-fit: scale-down;
-  margin-right: 20px;
+  object-position: bottom;
 }
-
-.pokemon-details {
-  flex-grow: 1;
+h3.pokemon-name-vertical {
+  margin: auto auto 5px auto;
+  text-align: center;
 }
-
-.pokemon-name {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
+.pokemon-name-vertical {
   text-transform: capitalize;
+}
+
+.pokemon-types-vertical{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
 }

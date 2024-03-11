@@ -1,19 +1,17 @@
 .type-chart {
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 table {
   border-collapse: collapse;
   text-align: center;
-  
 }
 th,
 td {
-    vertical-align: middle;
-    /* background-color:red; */
+  vertical-align: middle;
   border: rgba(201, 201, 201, 0.349) 1px solid;
   color: gold;
 }
-td{
-  padding:10px
+td {
+  padding: 10px;
 }
-
