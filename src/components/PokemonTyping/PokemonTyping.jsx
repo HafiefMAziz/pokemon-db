@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./PokemonTyping.css";
 
@@ -15,11 +15,10 @@ function PokemonTyping({ typingName, short = false }) {
     <>
       <Link to={`/?type=${typingName}`}>
         <button
-          className="pokemon-type-button"
+          className={ short ?"pokemon-type-button short-type" :"pokemon-type-button"}
           key={typingName}
           style={{
             backgroundColor: getTypeColor(typingName),
-            width: short ? 40 : 80,
           }}>
           {short ? typingName.slice(0, 3) : typingName}
         </button>

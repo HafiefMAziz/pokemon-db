@@ -21,7 +21,6 @@ h1 {
   display: flex;
   column-gap: 20px;
   flex-wrap: wrap;
-  height: 100px;
 }
 .select-type {
   text-transform: capitalize;

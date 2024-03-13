@@ -22,75 +22,89 @@ const TypeChart = ({ takesDamage }) => {
   };
   return (
     <div className="type-chart">
-      <table>
+      <table className="type-chart-table">
         <thead>
           <tr>
-            {Object.keys(types).slice(0,9).map((type, index) => {
-              return (
-                <th key={index}>
-                  <PokemonTyping typingName={type} short={true} key={index} />
-                </th>
-              );
-            })}
+            {Object.keys(types)
+              .slice(0, 9)
+              .map((type, index) => {
+                return (
+                  <th key={index} className="type-th-cell">
+                    <PokemonTyping typingName={type} short={true} key={index} />
+                  </th>
+                );
+              })}
           </tr>
         </thead>
         <tbody>
           <tr>
-            {Object.keys(types).slice(0,9).map((type, index) => {
-              let damageType = { color: "", damage: 1 };
-              const ab = takesDamage.find((el) => type === el.name);
-              if (ab) {
-                damageType.damage = ab.damage;
-                damageType.color = damageColor(ab.damage);
-              }
-              return (
-                <td key={index} style={{ backgroundColor: damageType.color ? damageType.color : "" }}>
-                  {damageType.damage === 1
-                    ? ""
-                    : damageType.damage === 0.5
-                    ? "½"
-                    : damageType.damage === 0.25
-                    ? "¼"
-                    : damageType.damage}
-                </td>
-              );
-            })}
+            {Object.keys(types)
+              .slice(0, 9)
+              .map((type, index) => {
+                let damageType = { color: "", damage: 1 };
+                const ab = takesDamage.find((el) => type === el.name);
+                if (ab) {
+                  damageType.damage = ab.damage;
+                  damageType.color = damageColor(ab.damage);
+                }
+                return (
+                  <td
+                    className="type-td-cell"
+                    key={index}
+                    style={{ backgroundColor: damageType.color ? damageType.color : "" }}>
+                    {damageType.damage === 1
+                      ? ""
+                      : damageType.damage === 0.5
+                      ? "½"
+                      : damageType.damage === 0.25
+                      ? "¼"
+                      : damageType.damage}
+                  </td>
+                );
+              })}
           </tr>
         </tbody>
       </table>
-      <table>
+      <table className="type-chart-table">
         <thead>
           <tr>
-            {Object.keys(types).slice(9,18).map((type, index) => {
-              return (
-                <th key={index}>
-                  <PokemonTyping typingName={type} short={true} key={index} />
-                </th>
-              );
-            })}
+            {Object.keys(types)
+              .slice(9, 18)
+              .map((type, index) => {
+                return (
+                  <th className="type-th-cell" key={index}>
+                    <PokemonTyping typingName={type} short={true} key={index} />
+                  </th>
+                );
+              })}
           </tr>
         </thead>
         <tbody>
           <tr>
-            {Object.keys(types).slice(9,18).map((type, index) => {
-              let damageType = { color: "", damage: 1 };
-              const ab = takesDamage.find((el) => type === el.name);
-              if (ab) {
-                damageType.damage = ab.damage;
-                damageType.color = damageColor(ab.damage);
-              }
-              return (
-                <td key={index} style={{ backgroundColor: damageType.color ? damageType.color : "" }}>
-                  {damageType.damage === 1
-                    ? ""
-                    : damageType.damage === 0.5
-                    ? "½"
-                    : damageType.damage === 0.25
-                    ? "¼"
-                    : damageType.damage}
-                </td>
-              );
-            })}
+            {Object.keys(types)
+              .slice(9, 18)
+              .map((type, index) => {
+                let damageType = { color: "", damage: 1 };
+                const ab = takesDamage.find((el) => type === el.name);
+                if (ab) {
+                  damageType.damage = ab.damage;
+                  damageType.color = damageColor(ab.damage);
+                }
+                return (
+                  <td
+                    className="type-td-cell"
+                    key={index}
+                    style={{ backgroundColor: damageType.color ? damageType.color : "" }}>
+                    {damageType.damage === 1
+                      ? ""
+                      : damageType.damage === 0.5
+                      ? "½"
+                      : damageType.damage === 0.25
+                      ? "¼"
+                      : damageType.damage}
+                  </td>
+                );
+              })}
           </tr>
         </tbody>
       </table>

@@ -1,0 +1,37 @@
+.flex-moves-table {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: center;
+}
+.moves-section{
+  overflow-x: auto;
+}
+.moves-table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+.moves-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.moves-table tr {
+  border-top: rgba(201, 201, 201, 0.349) 1px solid;
+  border-bottom: rgba(201, 201, 201, 0.349) 1px solid;
+}
+.moves-table th {
+  padding: 10px;
+}
+.moves-table td {
+  padding: 4px 15px;
+}
+.moves-cell-name {
+  min-width: 150px;
+  text-align: left;
+  text-transform: capitalize;
+}
+.cell-number {
+  text-align: right;
+}

@@ -1,17 +1,26 @@
-.type-chart {
-  display: flex;
-  flex-wrap: wrap;
-}
-table {
+.type-chart-table {
   border-collapse: collapse;
   text-align: center;
+  padding: 0;
+  margin: 10px auto;
 }
-th,
-td {
-  vertical-align: middle;
-  border: rgba(201, 201, 201, 0.349) 1px solid;
+.type-th-cell,
+.type-td-cell {
   color: gold;
+  border: rgba(201, 201, 201, 0.349) 1px solid;
 }
-td {
-  padding: 10px;
+.type-td-cell {
+  padding: 0px;
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 900px) {
+
+  .type-td-cell {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
 }

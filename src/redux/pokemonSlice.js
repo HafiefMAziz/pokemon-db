@@ -5,6 +5,88 @@ const initialState = {
   loading: false,
   pokemon: null,
   pokemons: null,
+  version_groups: [
+    {
+      name: "red-blue",
+      url: "https://pokeapi.co/api/v2/version-group/1/",
+    },
+    {
+      name: "yellow",
+      url: "https://pokeapi.co/api/v2/version-group/2/",
+    },
+    {
+      name: "gold-silver",
+      url: "https://pokeapi.co/api/v2/version-group/3/",
+    },
+    {
+      name: "crystal",
+      url: "https://pokeapi.co/api/v2/version-group/4/",
+    },
+    {
+      name: "ruby-sapphire",
+      url: "https://pokeapi.co/api/v2/version-group/5/",
+    },
+    {
+      name: "emerald",
+      url: "https://pokeapi.co/api/v2/version-group/6/",
+    },
+    {
+      name: "firered-leafgreen",
+      url: "https://pokeapi.co/api/v2/version-group/7/",
+    },
+    {
+      name: "diamond-pearl",
+      url: "https://pokeapi.co/api/v2/version-group/8/",
+    },
+    {
+      name: "platinum",
+      url: "https://pokeapi.co/api/v2/version-group/9/",
+    },
+    {
+      name: "heartgold-soulsilver",
+      url: "https://pokeapi.co/api/v2/version-group/10/",
+    },
+    {
+      name: "black-white",
+      url: "https://pokeapi.co/api/v2/version-group/11/",
+    },
+    {
+      name: "colosseum",
+      url: "https://pokeapi.co/api/v2/version-group/12/",
+    },
+    {
+      name: "xd",
+      url: "https://pokeapi.co/api/v2/version-group/13/",
+    },
+    {
+      name: "black-2-white-2",
+      url: "https://pokeapi.co/api/v2/version-group/14/",
+    },
+    {
+      name: "x-y",
+      url: "https://pokeapi.co/api/v2/version-group/15/",
+    },
+    {
+      name: "omega-ruby-alpha-sapphire",
+      url: "https://pokeapi.co/api/v2/version-group/16/",
+    },
+    {
+      name: "sun-moon",
+      url: "https://pokeapi.co/api/v2/version-group/17/",
+    },
+    {
+      name: "ultra-sun-ultra-moon",
+      url: "https://pokeapi.co/api/v2/version-group/18/",
+    },
+    {
+      name: "lets-go-pikachu-lets-go-eevee",
+      url: "https://pokeapi.co/api/v2/version-group/19/",
+    },
+    {
+      name: "sword-shield",
+      url: "https://pokeapi.co/api/v2/version-group/20/",
+    },
+  ],
   types: {
     normal: "#A8A878",
     fire: "#F08030",
@@ -76,28 +158,38 @@ export const fetchPokemon = createAsyncThunk("pokemon/fetchPokemon", async (sear
   try {
     const result = axios.get(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`).then(async (response) => {
       response.data.take_damages = [];
+      response.data.total_stat = response.data.stats.map((stat) => stat.base_stat).reduce((prev, next) => prev + next);
       response.data.types = response.data.types.map((type) => {
-        type = axios.get(type.type.url).then((res) => {
+        return (type = axios.get(type.type.url).then((res) => {
           res.data.damage_relations.double_damage_from.forEach((type) => {
             const existingType = response.data.take_damages.find((item) => item.name === type.name);
             existingType ? (existingType.damage *= 2) : response.data.take_damages.push({ name: type.name, damage: 2 });
           });
           res.data.damage_relations.half_damage_from.forEach((type) => {
             const existingType = response.data.take_damages.find((item) => item.name === type.name);
-            existingType ? (existingType.damage *= 0.5) : response.data.take_damages.push({ name: type.name, damage: 0.5 });
+            existingType
+              ? (existingType.damage *= 0.5)
+              : response.data.take_damages.push({ name: type.name, damage: 0.5 });
           });
           res.data.damage_relations.no_damage_from.forEach((type) => {
             const existingType = response.data.take_damages.find((item) => item.name === type.name);
             existingType ? (existingType.damage = 0) : response.data.take_damages.push({ name: type.name, damage: 0 });
           });
           return res.data;
-        });
-        return type;
+        }));
       });
-      // console.log(response.data.take_damages);
+      response.data.moves = response.data.moves.map(async (move) => {
+        move.move = await axios.get(move.move.url).then((res) => {
+          const { name, type, damage_class, power, accuracy, pp } = res.data;
+          return { name, type, damage_class, power, accuracy, pp };
+        });
+        return move;
+      });
       response.data.types = await Promise.all(response.data.types).then((data) => data);
+      response.data.moves = await Promise.all(response.data.moves).then((data) => data);
       return response.data;
     });
+    console.log(await result);
     return result;
   } catch (error) {
     return rejectWithValue(error);

@@ -1,9 +1,27 @@
 .pokemon-type-button {
-  padding: 7px 5px;
+  padding: 0;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  width: 65px;
+  height: 28px;
+  font-size: 0.7rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   border: 1px solid var(--border-color);
   text-transform: uppercase;
+}
+
+.short-type {
+  width: 28px;
+  height: 28px;
+}
+
+@media (min-width: 900px) {
+  .pokemon-type-button {
+    width: 70px;
+    font-size: 0.8rem;
+  }
+  .short-type {
+    width: 36px;
+  }
 }

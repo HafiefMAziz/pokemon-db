@@ -6,56 +6,111 @@
 
 .pokemon-card {
   display: flex;
+  flex-wrap: wrap;
   align-items: left;
   background-color: #f2f2f2;
   border-radius: 10px;
-  padding: 10px;
-  margin: 20px 70px;
+  padding: 20px 50px;
+  gap: 20px;
+}
+.pokemon-card h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.pokemon-name {
+  text-transform: capitalize;
 }
 
-.pokemon-image {
-  width: 150px;
-  height: 150px;
-  margin-right: 20px;
-  object-fit: scale-down;
-  align-self: center;
-}
-
-.pokemon-types{
+.flex-td-type {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
 
-.pokemon-details {
-  text-transform: capitalize;
-  margin-left: 10px;
-  box-sizing: border-box;
+.pokedex-table {
+  border-collapse: collapse;
+}
+.pokedex-table tr {
+  border-top: rgba(201, 201, 201, 0.349) 1px solid;
+  border-bottom: rgba(201, 201, 201, 0.349) 1px solid;
+}
+.pokedex-table th {
+  color: #737373;
+  font-size: 0.875rem;
+  font-weight: normal;
+  text-align: right;
+}
+.pokedex-table th,
+.pokedex-table td {
+  padding: 4px 10px;
+}
+.pokedex-table td {
+  width: 100%;
+}
+.pokedex-table ol {
+  margin: 0;
+  padding-inline-start: 16px;
 }
 
-.pokemon-details h2 {
-  margin-top: 0;
+.moves {
+  width: 100%;
 }
 
-.pokemon-details p {
-  margin: 5px 0;
+@media (min-width: 620px) {
+  .pokedex-table th {
+    width: 1px;
+    white-space: nowrap;
+  }
+
 }
 
+@media (max-width: 620px) {
+  #pokecard-flex-item {
+    width: 100%;
+  }
+  .pokemon-card {
+    padding: 5px;
+  }
+}
+
+.pokemon-detail-img {
+  align-self: center;
+}
+.pokemon-image {
+  width: 20%;
+  width: 200px;
+  height: 200px;
+  object-fit: scale-down;
+  align-self: center;
+}
+
+.pokemon-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.stats,
+.stat-table {
+  width: 100%;
+}
+#stat-number {
+  width: 3%;
+  text-align: right;
+}
 .stat {
   margin-bottom: 7px;
 }
 
-.stat-name {
-  margin-bottom: 5px;
-  color: #333;
-}
-
 .stat-bar {
-  display: flex;
+  height: 15px;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   text-shadow: 0 1px 1px rgb(0, 0, 0);
-  border: 1px solid var(--border-color);
-  text-indent: 5px;
-  padding: 1px;
+  border: 1px solid #737373;
+  border-color: rgba(0, 0, 0, 0.15);
 }

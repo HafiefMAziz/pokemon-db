@@ -15,16 +15,13 @@ export default function DetailPokemon() {
   }, [pokemonName]);
 
   return (
-    <div>
+    <>
       {error && <p>{error}</p>}
       {pokemon ? (
-        <>
-          {/* {console.log(pokemon)}  */}
-          <PokemonCard pokemonData={pokemon} />{" "}
-        </>
+          <PokemonCard/>
       ) : (
         <Loading />
       )}
-    </div>
+    </>
   );
 }
