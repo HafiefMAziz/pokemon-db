@@ -13,8 +13,6 @@
   padding: 5px;
 }
 .pokemon-image-vertical {
-  width: 100px;
-  height: 100px;
   flex-grow: 0.75;
   object-fit: scale-down;
   object-position: bottom;

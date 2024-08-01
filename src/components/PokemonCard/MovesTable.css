@@ -1,11 +1,12 @@
 .flex-moves-table {
   display: flex;
   flex-wrap: wrap;
-  gap: 4rem;
-  justify-content: center;
+  gap: 1rem;
+  justify-content: space-evenly;
 }
 .moves-section{
   overflow-x: auto;
+  width: 520px;
 }
 .moves-table {
   border-collapse: collapse;
@@ -33,5 +34,4 @@
   text-transform: capitalize;
 }
 .cell-number {
-  text-align: right;
 }

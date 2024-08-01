@@ -49,35 +49,6 @@ function SearchBar() {
   return (
     <>
       <div className="search-container">
-        <div className="img-icon">
-          <Link to={"/"}>
-            <img src={require(`../../public/images/pokemon-icon.png`)} />
-          </Link>
-        </div>
-        <div className="sort-type">
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="select-type">Type</InputLabel>
-            <Select
-              className="select-type"
-              labelId="select-type"
-              id="select-type"
-              value={type}
-              label="Type"
-              onChange={(event) => handleType(event)}>
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {types &&
-                Object.keys(types).map((type, index) => {
-                  return (
-                    <MenuItem className="select-type" value={type} key={index}>
-                      <PokemonTyping typingName={type} />
-                    </MenuItem>
-                  );
-                })}
-            </Select>
-          </FormControl>
-        </div>
         <div className="search-input">
           <Autocomplete
             id="free-solo-2-demo"
@@ -98,6 +69,29 @@ function SearchBar() {
               />
             )}
           />
+        </div>
+        <div className="sort-type">
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="select-type">Type</InputLabel>
+            <Select className="select-type" labelId="select-type" id="select-type" value={type} label="Type" onChange={(event) => handleType(event)}>
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {types &&
+                Object.keys(types).map((type, index) => {
+                  return (
+                    <MenuItem className="select-type" value={type} key={index}>
+                      <PokemonTyping typingName={type} />
+                    </MenuItem>
+                  );
+                })}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="img-icon">
+          <Link to={"/"}>
+            <img src={require(`../../public/images/pokemon-icon.png`)} />
+          </Link>
         </div>
       </div>
     </>

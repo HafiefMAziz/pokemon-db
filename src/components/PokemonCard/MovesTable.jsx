@@ -82,6 +82,8 @@ const MovesTable = () => {
               </tbody>
             </table>
           </div>
+        </div>
+        <div className="moves-section">
           <h4>Move Tutor moves</h4>
           <p>
             <span className="pokemon-name">{pokemon.name}</span>

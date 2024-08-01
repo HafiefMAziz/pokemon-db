@@ -9,6 +9,10 @@ h1 {
   height: auto;
 }
 
+.img-icon{
+  margin-right: auto;
+}
+
 .MuiAutocomplete-option {
   text-transform: capitalize;
 }
@@ -19,6 +23,7 @@ h1 {
   align-items: center;
   background-color: red;
   display: flex;
+  flex-direction: row-reverse;
   column-gap: 20px;
   flex-wrap: wrap;
 }
@@ -42,4 +47,6 @@ button:hover {
 
 .search-input {
   width: 200px;
+}
+.sort-type {
 }

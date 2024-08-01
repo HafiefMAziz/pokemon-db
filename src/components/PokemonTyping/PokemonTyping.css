@@ -19,9 +19,11 @@
 @media (min-width: 900px) {
   .pokemon-type-button {
     width: 70px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 650;
   }
   .short-type {
-    width: 36px;
+    width: 34px;
+    height: 30px;
   }
 }
